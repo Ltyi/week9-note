@@ -1,24 +1,12 @@
-# week9-note
+# Week-9
 
-## Project setup
-```
-npm install
-```
+## Core
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Vue 3.x
+- Tailwind CSS 2.x
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Layout
 
-### Lints and fixes files
-```
-npm run lint
-```
+[edith.hsu](https://z7x2c0v0b8.github.io/the_f2e_2nd/notebook.html#artboard1)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## DEMO
