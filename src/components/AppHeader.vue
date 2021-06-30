@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { computed, watch } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -44,14 +44,10 @@ export default {
       store.dispatch('setDarkMode', !darkMode.value)
     }
 
-    watch(
-      darkMode,
-      val => {
-        const element = document.documentElement
-        val ? element.classList.add('dark') : element.classList.remove('dark')
-      },
-      { immediate: true }
-    )
+    watchEffect(() => {
+      const element = document.documentElement
+      darkMode.value ? element.classList.add('dark') : element.classList.remove('dark')
+    })
 
     return {
       toggleDark
