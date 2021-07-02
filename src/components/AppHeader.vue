@@ -14,6 +14,7 @@
           dark:border-white
           focus:outline-none
         "
+        v-model="keywords"
       />
       <fa-icon :icon="['fas', 'search']" class="absolute right-4 text-lg"></fa-icon>
     </div>
@@ -38,7 +39,12 @@ export default {
 
   setup() {
     const store = useStore()
+
     const darkMode = computed(() => store.state.darkMode)
+    const keywords = computed({
+      get: () => store.state.keywords,
+      set: val => store.dispatch('setKeywords', val)
+    })
 
     const toggleDark = () => {
       store.dispatch('setDarkMode', !darkMode.value)
@@ -50,6 +56,7 @@ export default {
     })
 
     return {
+      keywords,
       toggleDark
     }
   }

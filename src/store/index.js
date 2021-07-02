@@ -3,7 +3,11 @@ import createPersistedState from 'vuex-persistedstate'
 import _ from 'lodash'
 
 export default createStore({
-  plugins: [createPersistedState()],
+  plugins: [
+    createPersistedState({
+      paths: ['notes', 'darkMode']
+    })
+  ],
 
   state: {
     darkMode: true,
@@ -11,6 +15,7 @@ export default createStore({
     viewMode: 'list-card',
     chunkSize: 6,
     addIsOpen: false,
+    keywords: '',
     notes: [
       { id: '0', title: '標題1', star: true, cover: 1, content: '' },
       { id: '1', title: '標題2', star: true, cover: 2, content: '' },
@@ -41,6 +46,10 @@ export default createStore({
       state.addIsOpen = payload
     },
 
+    SET_KEYWORDS(state, payload) {
+      state.keywords = payload
+    },
+
     SET_NOTES(state, payload) {
       state.notes = payload
     },
@@ -53,8 +62,9 @@ export default createStore({
   getters: {
     filteredNotes(state) {
       const arr = state.starMode ? state.notes.filter(item => item.star) : state.notes
-      const clone = _.cloneDeep(arr)
+      let clone = _.cloneDeep(arr)
 
+      clone = clone.filter(item => item.title.includes(state.keywords))
       clone.unshift({ add: true })
 
       return state.viewMode === 'list-card' ? _.chunk(clone, state.chunkSize) : clone
@@ -80,6 +90,10 @@ export default createStore({
 
     setAddIsOpen({ commit }, payload) {
       commit('SET_ADD_IS_OPEN', payload)
+    },
+
+    setKeywords({ commit }, payload) {
+      commit('SET_KEYWORDS', payload)
     },
 
     setNoteStar({ commit, state }, id) {
