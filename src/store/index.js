@@ -1,7 +1,10 @@
 import { createStore } from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 import _ from 'lodash'
 
 export default createStore({
+  plugins: [createPersistedState()],
+
   state: {
     darkMode: true,
     starMode: false,
@@ -9,11 +12,11 @@ export default createStore({
     chunkSize: 6,
     addIsOpen: false,
     notes: [
-      { id: 0, title: '標題1', star: true, cover: 1, content: '' },
-      { id: 1, title: '標題2', star: true, cover: 2, content: '' },
-      { id: 2, title: '標題3', star: false, cover: 3, content: '' },
-      { id: 3, title: '標題4', star: true, cover: 4, content: '' },
-      { id: 4, title: '標題5', star: true, cover: 5, content: '' }
+      { id: '0', title: '標題1', star: true, cover: 1, content: '' },
+      { id: '1', title: '標題2', star: true, cover: 2, content: '' },
+      { id: '2', title: '標題3', star: false, cover: 3, content: '' },
+      { id: '3', title: '標題4', star: true, cover: 4, content: '' },
+      { id: '4', title: '標題5', star: true, cover: 5, content: '' }
     ]
   },
 

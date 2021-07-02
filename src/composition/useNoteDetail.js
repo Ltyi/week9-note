@@ -8,7 +8,7 @@ export default function useNoteDetail() {
   const route = useRoute()
   const router = useRouter()
 
-  const id = route.params.id * 1
+  const id = route.params.id
   const note = computed(() => store.state.notes.find(item => item.id === id))
 
   const form = ref({ ...note.value })
