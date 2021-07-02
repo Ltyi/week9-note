@@ -1,6 +1,6 @@
 <template>
-  <app-dialog v-model="addDialog">
-    <div class="font-bold">
+  <app-dialog v-model="addIsOpen">
+    <div class="font-bold dark:text-white">
       <div class="text-lg px-5">新增筆記</div>
 
       <div class="h-px bg-[#D8D8D8] my-4"></div>
@@ -9,7 +9,15 @@
         <span class="mr-4">筆記名稱</span>
         <input
           type="text"
-          class="w-[173px] h-[33px] bg-[#f4f4f4] rounded border-2 border-black px-2"
+          class="
+            w-[173px]
+            h-[33px]
+            bg-[#f4f4f4]
+            rounded
+            border-2 border-black
+            px-2
+            dark:text-black
+          "
           v-model="form.title"
         />
       </div>
@@ -44,23 +52,21 @@
       <div class="h-px bg-[#D8D8D8] my-4"></div>
 
       <div class="flex px-5">
-        <p v-if="showError" class="text-red-600">標題或封面尚未填寫或選擇</p>
-        <button
-          class="w-[90px] h-[37px] rounded bg-black text-white ml-auto"
-          @click="submit"
-        >
+        <p v-if="showError" class="text-red-600 dark:text-red-500">
+          標題或封面尚未填寫或選擇
+        </p>
+
+        <app-btn class="bg-black text-white ml-auto px-[30px]" @click="addSubmit">
           確定
-        </button>
+        </app-btn>
       </div>
     </div>
   </app-dialog>
 </template>
 
 <script>
-import { computed, nextTick, ref, watch } from 'vue'
-import { useStore } from 'vuex'
 import AppDialog from '@/components/AppDialog.vue'
-import { v4 as uuidv4 } from 'uuid'
+import useNote from '@/composition/useNote.js'
 
 export default {
   name: 'ListAdd',
@@ -70,7 +76,6 @@ export default {
   },
 
   setup() {
-    const store = useStore()
     const covers = [
       {
         value: 1,
@@ -93,50 +98,17 @@ export default {
         class: 'bg-cover5'
       }
     ]
-    const addDialog = computed({
-      get: () => store.state.addDialog,
-      set: val => store.dispatch('setAddDialog', val)
-    })
-    const form = ref({ title: '', cover: '' })
-    const isError = computed(() => !form.value.title || !form.value.cover)
-    const showError = ref(false)
 
-    watch(addDialog, val => {
-      if (!val) reset()
-    })
-
-    const submit = () => {
-      if (isError.value) {
-        showError.value = true
-        return
-      }
-
-      const payload = {
-        id: uuidv4(),
-        star: false,
-        ...form.value
-      }
-
-      store.dispatch('addNote', payload)
-
-      form.value = { title: '', cover: '' }
-      showError.value = false
-      addDialog.value = false
-    }
-
-    const reset = () => {
-      nextTick(() => {
-        form.value = { title: '', cover: '' }
-        showError.value = false
-      })
-    }
+    const { addIsOpen, form, showError, addOpen, addSubmit, listStarToggle } = useNote()
 
     return {
-      addDialog,
       covers,
+      addIsOpen,
       form,
       showError,
-      submit
+      addOpen,
+      addSubmit,
+      listStarToggle
     }
   }
 }

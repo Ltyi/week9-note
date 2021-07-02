@@ -7,13 +7,13 @@ export default createStore({
     starMode: false,
     viewMode: 'list-card',
     chunkSize: 6,
-    addDialog: false,
+    addIsOpen: false,
     notes: [
-      { id: 0, title: '標題1', star: true, cover: 1 },
-      { id: 1, title: '標題2', star: true, cover: 2 },
-      { id: 2, title: '標題3', star: false, cover: 3 },
-      { id: 3, title: '標題4', star: true, cover: 4 },
-      { id: 4, title: '標題5', star: true, cover: 5 }
+      { id: 0, title: '標題1', star: true, cover: 1, content: '' },
+      { id: 1, title: '標題2', star: true, cover: 2, content: '' },
+      { id: 2, title: '標題3', star: false, cover: 3, content: '' },
+      { id: 3, title: '標題4', star: true, cover: 4, content: '' },
+      { id: 4, title: '標題5', star: true, cover: 5, content: '' }
     ]
   },
 
@@ -34,8 +34,8 @@ export default createStore({
       state.chunkSize = payload
     },
 
-    SET_ADD_DIALOG(state, payload) {
-      state.addDialog = payload
+    SET_ADD_IS_OPEN(state, payload) {
+      state.addIsOpen = payload
     },
 
     SET_NOTES(state, payload) {
@@ -75,8 +75,8 @@ export default createStore({
       commit('SET_CHUNK_SIZE', payload)
     },
 
-    setAddDialog({ commit }, payload) {
-      commit('SET_ADD_DIALOG', payload)
+    setAddIsOpen({ commit }, payload) {
+      commit('SET_ADD_IS_OPEN', payload)
     },
 
     setNoteStar({ commit, state }, id) {
@@ -92,6 +92,19 @@ export default createStore({
 
     addNote({ commit }, payload) {
       commit('ADD_NOTES', payload)
+    },
+
+    editNote({ commit, state }, payload) {
+      const clone = _.cloneDeep(state.notes)
+      const index = clone.findIndex(item => item.id === payload.id)
+
+      if (index !== -1) {
+        clone[index] = { ...payload }
+        commit('SET_NOTES', clone)
+        return true
+      }
+
+      return false
     }
   },
 

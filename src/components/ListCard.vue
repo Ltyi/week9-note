@@ -9,7 +9,7 @@
       mb-[30px]
       sm:mb-[72px]
       before:block before:bg-[#f1f0f0]
-      dark:before:bg-[#454558]
+      dark:before:bg-dark-2
       before:content-[''] before:w-[calc(100%-150px)]
       sm:before:h-[84px]
       before:absolute
@@ -35,7 +35,7 @@
       >
         <div
           class="absolute inset-0 flex flex-col justify-center items-center"
-          @click="addDialog"
+          @click="addOpen"
         >
           <fa-icon :icon="['fas', 'plus']" class="text-4xl mb-4"></fa-icon>
           <p>新增筆記</p>
@@ -71,7 +71,7 @@
             px-4
             py-3
           "
-          @click.self="test"
+          @click.self="goDetail(item.id)"
         >
           <p class="font-bold text-black">{{ item.title }}</p>
 
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import useList from '@/composition/useList.js'
+import useNote from '@/composition/useNote.js'
 
 export default {
   name: 'ListCard',
@@ -101,11 +101,12 @@ export default {
   },
 
   setup() {
-    const { listStarToggle, addDialog } = useList()
+    const { listStarToggle, addOpen, goDetail } = useNote()
 
     return {
       listStarToggle,
-      addDialog
+      addOpen,
+      goDetail
     }
   }
 }

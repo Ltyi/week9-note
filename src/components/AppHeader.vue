@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center py-[23px]">
+  <header class="relative flex items-center py-[23px] z-50">
     <!-- 搜尋框 -->
     <div class="relative flex items-center text-black mx-auto dark:text-white">
       <input

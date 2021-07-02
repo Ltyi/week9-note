@@ -8,19 +8,13 @@ export default function useList() {
   const starMode = computed(() => store.state.starMode)
   const filteredNotes = computed(() => store.getters.filteredNotes)
 
-  // 切換檢視模式
+  // [切換檢視模式]
   const changeView = mode => store.dispatch('setViewMode', mode)
 
-  // 切換筆記星號
-  const listStarToggle = id => store.dispatch('setNoteStar', id)
-
-  // 切換星號檢視
+  // [切換星號檢視]
   const starModeToggle = () => store.dispatch('setStarMode')
 
-  // 筆記新增
-  const addDialog = () => store.dispatch('setAddDialog', true)
-
-  // 列表 resize
+  // [列表 resize]
   const listResize = () => {
     const breakpoint = {
       xs: { width: 639, size: 3 },
@@ -56,8 +50,6 @@ export default function useList() {
     filteredNotes,
     resizeObserve,
     changeView,
-    listStarToggle,
-    starModeToggle,
-    addDialog
+    starModeToggle
   }
 }

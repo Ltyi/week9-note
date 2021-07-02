@@ -12,14 +12,20 @@ module.exports = {
       },
 
       colors: {
-        primary: {
-          dark: '#22222D',
-          light: '#ffffff'
+        dark: {
+          1: '#22222d',
+          2: '#454558',
+          3: '#131313',
+          4: '#424255',
+          5: '#1A1A25',
+          6: '#28283f'
         },
-        secondary: {
-          dark: '#424255',
-          light: '#eeeeee'
-        }
+        light: {
+          1: '#eeeeee',
+          2: '#f8f8f8',
+          3: '#e4e4e4'
+        },
+        link: '#495bff'
       },
 
       boxShadow: {

@@ -8,10 +8,20 @@ import {
   faPlus,
   faTimes
 } from '@fortawesome/free-solid-svg-icons'
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar as farStar, faCheckSquare } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faSearch, faAdjust, faStar, faList, faThLarge, faPlus, faTimes, farStar)
+library.add(
+  faSearch,
+  faAdjust,
+  faStar,
+  faList,
+  faThLarge,
+  faPlus,
+  faTimes,
+  farStar,
+  faCheckSquare
+)
 
 export default {
   install(app) {

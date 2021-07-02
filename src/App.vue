@@ -1,5 +1,5 @@
 <template>
-  <div class="font-noto min-h-screen dark:bg-primary-dark transition-all">
+  <div class="relative font-noto min-h-screen dark:bg-dark-1 transition-all z-10">
     <div class="container mx-auto px-4">
       <app-header></app-header>
       <router-view />

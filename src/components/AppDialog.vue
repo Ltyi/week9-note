@@ -1,6 +1,6 @@
 <template>
   <transition leave-active-class="duration-200">
-    <div v-show="modelValue" class="fixed z-10 inset-0 overflow-y-auto">
+    <div v-show="modelValue" class="fixed z-50 inset-0 overflow-y-auto">
       <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20">
         <transition
           enter-from-class="opacity-0"
@@ -15,7 +15,7 @@
             class="fixed inset-0 transition-opacity"
             @click="close"
           >
-            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            <div class="absolute inset-0 bg-black/50 opacity-75"></div>
           </div>
         </transition>
 
@@ -33,6 +33,7 @@
               py-4
               px-[6px]
               bg-white
+              dark:bg-dark-4
               w-full
               max-w-[488px]
               rounded

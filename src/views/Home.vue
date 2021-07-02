@@ -2,24 +2,13 @@
   <div class="text-black dark:text-white pb-8" ref="content">
     <!-- 列表切換 -->
     <div class="flex items-center h-[38px] my-8">
-      <button
-        @click="starModeToggle"
-        class="
-          relative
-          px-4
-          h-full
-          rounded-[5px]
-          text-xs
-          bg-secondary-light
-          dark:bg-secondary-dark
-        "
-      >
+      <app-btn class="text-xs bg-light-1 dark:bg-dark-4" @click="starModeToggle">
         <fa-icon
           :icon="starMode ? ['fas', 'star'] : ['far', 'star']"
           class="text-sm mr-1"
         ></fa-icon>
         顯示星號筆記
-      </button>
+      </app-btn>
 
       <div class="ml-auto text-xl">
         <button @click="changeView('list-card')">

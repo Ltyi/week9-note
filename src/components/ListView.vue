@@ -14,7 +14,7 @@
             border border-black
             dark:border-white
           "
-          @click="addDialog"
+          @click="addOpen"
         >
           <p>新增筆記</p>
 
@@ -39,8 +39,9 @@
           shadow-tile
           cursor-pointer
           bg-[#f4f4f4]
-          dark:bg-[#454558]
+          dark:bg-dark-2
         "
+        @click.self="goDetail(item.id)"
       >
         <p>{{ item.title }}</p>
 
@@ -56,7 +57,7 @@
 </template>
 
 <script>
-import useList from '@/composition/useList.js'
+import useNote from '@/composition/useNote.js'
 
 export default {
   name: 'ListView',
@@ -69,11 +70,12 @@ export default {
   },
 
   setup() {
-    const { listStarToggle, addDialog } = useList()
+    const { listStarToggle, addOpen, goDetail } = useNote()
 
     return {
       listStarToggle,
-      addDialog
+      addOpen,
+      goDetail
     }
   }
 }
