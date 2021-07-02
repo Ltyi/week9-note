@@ -62,9 +62,8 @@ export default createStore({
   getters: {
     filteredNotes(state) {
       const arr = state.starMode ? state.notes.filter(item => item.star) : state.notes
-      let clone = _.cloneDeep(arr)
+      const clone = _.cloneDeep(arr).filter(item => item.title.includes(state.keywords))
 
-      clone = clone.filter(item => item.title.includes(state.keywords))
       clone.unshift({ add: true })
 
       return state.viewMode === 'list-card' ? _.chunk(clone, state.chunkSize) : clone
